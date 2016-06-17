@@ -1,5 +1,5 @@
 var should = require('should'),
-    request = require('supertest'),
+    supertest = require('supertest'),
     server = supertest.agent("http://localhost:3000");
 
 describe('GET /geolocations', function() {
@@ -31,10 +31,6 @@ describe('GET /geolocations/{ip}', function() {
             .expect("Content-type", /json/)
             .expect(200)
             .end(function(err, res) {
-                // HTTP status should be 200
-                res.status.should.equal(200);
-                // Error key should be false.
-                res.body.error.should.equal(false);
                 done();
             });
     });
