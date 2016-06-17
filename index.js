@@ -4,13 +4,13 @@
 // Dependencies
 var express = require('express'),
     parser = require('body-parser'),
-    routes = require('./routes'),
+    routes = require('./routes/geo'),
     path = require('path'),
     swaggerJSDoc = require('swagger-jsdoc');
 
 // Initialize express
 var app = express();
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); //swagger-ui docs folder
 app.use(parser.json()); // support json-encoded bodies
 app.use(parser.urlencoded({ // support url-encoded bodies
     extended: true,
@@ -34,7 +34,7 @@ var options = {
     // Import swaggerDefinitions
     swaggerDefinition: swaggerDefinition,
     // Path to the API docs
-    apis: ['./routes.js'],
+    apis: ['./routes/*.js'],
 };
 
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format
