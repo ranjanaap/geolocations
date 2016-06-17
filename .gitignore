@@ -4,5 +4,5 @@
 /bower_components/
 /node_modules/
 /GeoLite2-City.mmdb
-/temp.yaml
+/temp.yml
 /.DS_Store
