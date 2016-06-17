@@ -6,6 +6,7 @@ var express = require('express'),
     parser = require('body-parser'),
     routes = require('./routes/geo'),
     path = require('path'),
+    errorHandler = require('api-error-handler'),
     swaggerJSDoc = require('swagger-jsdoc');
 
 // Initialize express
@@ -15,6 +16,7 @@ app.use(parser.json()); // support json-encoded bodies
 app.use(parser.urlencoded({ // support url-encoded bodies
     extended: true,
 }));
+app.use(errorHandler()); //handle errors other than 404
 
 // Swagger definition
 // You can set every attribute except paths and swagger
