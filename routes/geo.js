@@ -77,8 +77,13 @@ module.exports.setup = function(app) {
      *           $ref: '#/definitions/geoResponse'
      */
     app.get('/geolocations', function(req, res) {
-        var ip = req.connection.remoteAddress;
-        res.json(getGeo(ip.toString()));
+        var ip = req.connection.remoteAddress,
+            result = getGeo(ip);
+
+        if(result.errors) {
+            res.status(404);
+        }
+        res.json(result);
     });
     /**
      * @swagger
@@ -102,7 +107,12 @@ module.exports.setup = function(app) {
      *           $ref: '#/definitions/geoResponse'
      */
     app.get('/geolocations/:ip', function(req, res) {
-        var ip = req.params.ip;
-        res.json(getGeo(ip));
+        var ip = req.params.ip,
+            result = getGeo(ip);
+
+        if(result.errors) {
+            res.status(404);
+        }
+        res.json(result);
     });
 };
