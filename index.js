@@ -7,7 +7,8 @@ var express = require('express'),
     routes = require('./routes/geo'),
     path = require('path'),
     errorHandler = require('api-error-handler'),
-    swaggerJSDoc = require('swagger-jsdoc');
+    swaggerJSDoc = require('swagger-jsdoc'),
+    config = require('./env.json')[process.env.NODE_ENV || 'development'];
 
 // Initialize express
 var app = express();
@@ -27,7 +28,7 @@ var swaggerDefinition = {
         version: '0.0.1', // Version (required)
         description: 'An API endpoint to geolocate users based on their IP address', // Description (optional)
     },
-    host: 'localhost:3000', // Host (optional)
+    host: process.env.NODE_ENV === 'production' ? config.host : config.host + ':' + config.port, // Host (optional)
     basePath: '/', // Base path (optional)
 };
 

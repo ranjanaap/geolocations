@@ -34,12 +34,14 @@
 
   <script type="text/javascript">
     $(function () {
-      var url = window.location.search.match(/url=([^&]+)/);
+      /*var url = window.location.search.match(/url=([^&]+)/);
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = "http://localhost:3000/swagger.json";
-      }
+        url = window.location.host + "/swagger.json";
+      }*/
+
+      var url = window.location.origin + "/swagger.json";
 
       hljs.configure({
         highlightSizeThreshold: 5000
