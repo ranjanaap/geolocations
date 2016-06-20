@@ -77,7 +77,7 @@ module.exports.setup = function(app) {
      *           $ref: '#/definitions/geoResponse'
      */
     app.get('/geolocations', function(req, res) {
-        var ip = req.connection.remoteAddress,
+        var ip = req.header('x-forwarded-for') || req.connection.remoteAddress,
             result = getGeo(ip);
 
         if(result.errors) {
